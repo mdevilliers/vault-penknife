@@ -1,7 +1,6 @@
 package vault
 
 import (
-	"fmt"
 	path_helper "path"
 	"strings"
 
@@ -13,11 +12,9 @@ import (
 func Walk(client *api.Client, path string) ([]string, error) {
 
 	s, err := client.Logical().List(path)
-	fmt.Println("path:", path)
 	if err != nil {
 		return nil, errors.Wrapf(err, "error listing path : %s", path)
 	}
-	fmt.Println("data:", s)
 	key, found := s.Data["keys"]
 
 	if !found {

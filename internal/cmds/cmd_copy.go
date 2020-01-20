@@ -32,7 +32,6 @@ func RegisterCopyCmd(client *api.Client) func() (*cobra.Command, error) {
 					newK := strings.ReplaceAll(k, source, destination)
 
 					if dryrun {
-
 						fmt.Println("[dry-run]", k, "copy to", newK)
 					} else {
 						from, err := client.Logical().Read(k)
@@ -46,10 +45,8 @@ func RegisterCopyCmd(client *api.Client) func() (*cobra.Command, error) {
 						if err != nil {
 							return errors.Wrapf(err, "error writing value to dest key: %s", newK)
 						}
-
 					}
 				}
-
 				return nil
 			},
 		}
@@ -57,6 +54,7 @@ func RegisterCopyCmd(client *api.Client) func() (*cobra.Command, error) {
 		copyCommand.Flags().StringVar(&source, "source", source, "source path e.g. secret/foo")
 		copyCommand.Flags().StringVar(&destination, "dest", destination, "destination path e.g. secret/bar")
 		copyCommand.Flags().BoolVar(&dryrun, "dry-run", dryrun, "show me what you would have done - no effects")
+
 		err := markFlagsRequired(copyCommand, "source", "dest")
 
 		if err != nil {
