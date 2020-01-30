@@ -16,7 +16,7 @@ var rootCmd = &cobra.Command{
 }
 
 type config struct {
-	Token string `envconfig:"VAULT_PENKINFE_TOKEN" default:""`
+	Token string `envconfig:"VAULT_PENKNIFE_TOKEN" default:""`
 }
 
 var (
