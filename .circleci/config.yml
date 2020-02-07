@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.13
+        environment:
+          GO111MODULE: "on"
+    working_directory: /go/src/github.com/mdevilliers/vault-penknife
+    steps:
+      - checkout
+      - run: make lint
+      - run: make test
+
+workflows:
+  version: 2
+  all:
+    jobs:
+      - build
